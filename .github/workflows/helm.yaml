@@ -42,6 +42,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: true
           prerelease: false
-          automatic_release_tag: latest
+          automatic_release_tag: helm-chart-update
           files: |
             *.tgz
