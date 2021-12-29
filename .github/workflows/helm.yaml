@@ -39,10 +39,15 @@ jobs:
         run: helm template helm/ip-whitelister
       -
         # if: github.ref == 'refs/heads/main' 
-        if: ${{ github.event.release }}
+        # if: ${{ github.event.release }}
         name: Package Helm chart
         run: helm package helm/ip-whitelister && mv *.tgz helm-chart-`ls -1 *.tgz`
       -
+        name: Upload Helm chart
+        uses: actions/upload-artifact@v2
+        with:
+          name: helm-chart-1.2.3
+          path: helm-chart-*.tgz
         # # if: github.ref == 'refs/heads/main' 
         # if: ${{ github.event.release }}
         # name: Create release
@@ -55,11 +60,11 @@ jobs:
         #   files: |
         #     *.tgz
         # # if: github.ref == 'refs/heads/main'
-        name: Create release
-        uses: release-drafter/release-drafter@v5
-        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
-        # with:
-        #   config-name: my-config.yml
-        #   disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # name: Create release
+        # uses: release-drafter/release-drafter@v5
+        # # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        # # with:
+        # #   config-name: my-config.yml
+        # #   disable-autolabeler: true
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
