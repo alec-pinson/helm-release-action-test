@@ -32,10 +32,12 @@ jobs:
         run: helm template helm/ip-whitelister
       -
         # if: github.ref == 'refs/heads/main' 
+        if: ${{ github.event.tag }}
         name: Package Helm chart
         run: helm package helm/ip-whitelister && mv *.tgz helm-chart-`ls -1 *.tgz`
       -
         # if: github.ref == 'refs/heads/main' 
+        if: ${{ github.event.tag }}
         name: Create release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
