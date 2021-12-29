@@ -3,9 +3,9 @@ name: release
 
 on:
   push:
-    paths-ignore:
-      - 'helm/**'
-      - '.github/workflows/helm.yaml'
+    paths:
+      - '!helm/**'
+      - '!.github/workflows/helm.yaml'
     branches:
       - main
 
