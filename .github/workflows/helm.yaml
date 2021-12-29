@@ -37,13 +37,23 @@ jobs:
         name: Package Helm chart
         run: helm package helm/ip-whitelister && mv *.tgz helm-chart-`ls -1 *.tgz`
       -
-        # if: github.ref == 'refs/heads/main' 
-        if: ${{ github.event.release }}
+        # # if: github.ref == 'refs/heads/main' 
+        # if: ${{ github.event.release }}
+        # name: Create release
+        # uses: "marvinpinto/action-automatic-releases@latest"
+        # with:
+        #   repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        #   draft: true
+        #   prerelease: false
+        #   title: Helm chart updated
+        #   files: |
+        #     *.tgz
+        # # if: github.ref == 'refs/heads/main' 
         name: Create release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          draft: true
-          prerelease: false
-          files: |
-            *.tgz
+      - uses: release-drafter/release-drafter@v5
+        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        # with:
+        #   config-name: my-config.yml
+        #   disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
