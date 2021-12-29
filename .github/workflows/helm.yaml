@@ -12,6 +12,12 @@ on:
       - '.github/workflows/helm.yaml'
     branches:
       - main
+  push:
+    paths:
+      - 'helm/**'
+      - '.github/workflows/helm.yaml'
+    branches:
+      - main
 
 jobs:
   release:
