@@ -39,7 +39,7 @@ jobs:
         run: helm template helm/ip-whitelister
       -
         # if: github.ref == 'refs/heads/main' 
-        if: ${{ github.event.release }}
+        # if: ${{ github.event.release }}
         name: Package Helm chart
         run: helm package helm/ip-whitelister && mv *.tgz helm-chart-`ls -1 *.tgz`
       -
