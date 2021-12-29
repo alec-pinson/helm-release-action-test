@@ -5,7 +5,7 @@ on:
     paths:
       - 'helm/**'
       - '.github/workflows/helm.yaml'
-  push:
+  tag:
     paths:
       - 'helm/**'
       - '.github/workflows/helm.yaml'
