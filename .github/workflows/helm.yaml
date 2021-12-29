@@ -2,7 +2,11 @@ name: package helm chart
 
 on:
   pull_request:
+    paths:
+      - 'helm/**'
   push:
+    paths:
+      - 'helm/**'
     branches:
       - main
 
@@ -27,7 +31,7 @@ jobs:
       -
         # if: github.ref == 'refs/heads/main' 
         name: Package Helm chart
-        run: helm package helm/ip-whitelister
+        run: helm package helm/ip-whitelister && mv *.tgz helm-chart-`ls -1 *.tgz`
       -
         # if: github.ref == 'refs/heads/main' 
         name: Create release
